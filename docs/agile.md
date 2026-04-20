@@ -39,4 +39,3 @@ Kanban es una forma de gestionar el trabajo de forma visual con una tabla, que e
 
 Pero al final en la practica, se pueden combinar las 2 metodologias.
 
-Trello: https://trello.com/invite/b/69e1f91b04f4ec0222588361/ATTI37936966d35c8a05ef480007758826e5CCD40D8B/fullstack-top-5-de-todo
