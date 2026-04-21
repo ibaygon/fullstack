@@ -35,4 +35,3 @@ El formato "Top 5" es simple, rapido y divertido, y se centra en lo esencial.
 - Perfil de usuario con sus listas públicas.
 - Comentarios en listas.
 - Exportar listas como imagen para compartir en redes.
-- App móvil con React Native.
