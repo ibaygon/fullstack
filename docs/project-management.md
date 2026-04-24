@@ -6,19 +6,19 @@ Este documento describe cómo estoy organizando el trabajo del proyecto fullstac
 
 El tablero de Trello está organizado en las siguientes columnas:
 
-- **Backlog**  
+- Backlog  
   Aquí coloco todas las funcionalidades, ideas y tareas pendientes que aún no están listas para empezar.
 
-- **Todo**  
+- Todo  
   Tareas seleccionadas para trabajar próximamente. Están definidas y listas para comenzar.
 
-- **In Progress**  
+- In Progress  
   Tareas en las que estoy trabajando activamente. Solo debería haber 1–2 a la vez para evitar dispersión.
 
-- **Review**  
+- Review
   Tareas terminadas que necesitan revisión, pruebas o verificación antes de considerarse completadas.
 
-- **Done**  
+- Done
   Tareas finalizadas y aprobadas.
 
 ## Organización de las tareas
@@ -26,7 +26,7 @@ El tablero de Trello está organizado en las siguientes columnas:
 Cada funcionalidad del proyecto tiene su propia tarjeta en Trello.  
 Dentro de cada tarjeta incluyo:
 
-- **Descripción breve de la funcionalidad**
-- **Checklist de subtareas técnicas**
-- **Notas o decisiones importantes**
-- **Referencias a documentación si es necesario**
+- Descripción breve de la funcionalida
+- Checklist de subtareas técnicas
+- Notas o decisiones importantes
+- Referencias a documentación si es necesario

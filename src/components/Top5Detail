@@ -1,0 +1,22 @@
+import type { Top5List } from "../types/Top5List.ts";
+
+interface Top5DetailProps {
+  list: Top5List;
+}
+
+export const Top5Detail: React.FC<Top5DetailProps> = ({ list }) => {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-md max-w-xl mx-auto">
+      <h2 className="text-2xl font-bold">{list.title}</h2>
+      <p className="text-gray-500">{list.category}</p>
+
+      <ol className="mt-4 list-decimal ml-6 text-gray-700">
+        {list.items.map((item, i) => (
+          <li key={i} className="py-1">
+            {item}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+};
