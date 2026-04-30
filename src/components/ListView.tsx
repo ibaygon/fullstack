@@ -1,3 +1,4 @@
+import { useState, useMemo, useCallback } from "react";
 import type { Top5List } from "../types/Top5List";
 import { Loader } from "./Loader";
 import { ErrorMessage } from "./ErrorMessage";
@@ -17,6 +18,22 @@ export const ListView: React.FC<ListViewProps> = ({
   error,
   onSelect,
 }) => {
+
+
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const totalItems = useMemo(() => {
+    return lists.reduce((acc, list) => acc + list.items.length, 0);
+  }, [lists]);
+
+  const handleSelect = useCallback(
+    (id: string) => {
+      setSelectedId(id);
+      onSelect(id);
+    },
+    [onSelect]
+  );
+
   if (loading) return <Loader message="Cargando listas..." />;
   if (error) return <ErrorMessage message={error} />;
   if (lists.length === 0)
@@ -28,9 +45,15 @@ export const ListView: React.FC<ListViewProps> = ({
         <ListaCard
           key={list.id}
           list={list}
-          onClick={() => onSelect(list.id)}
+          onClick={() => handleSelect(list.id)}
         />
       ))}
+
+      {/* Ejemplo de uso de useMemo */}
+      <p className="text-sm text-gray-500 col-span-full">
+        Total de elementos en todas las listas: {totalItems}
+      </p>
     </div>
   );
 };
+
