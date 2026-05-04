@@ -1,15 +1,9 @@
 {
-  "name": "top5-api",
+  "name": "top5",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
-  },
-  "dependencies": {
-    "express": "^4.19.2",
-    "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   }
 }

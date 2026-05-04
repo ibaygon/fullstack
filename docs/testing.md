@@ -6,7 +6,7 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 ## 1. Pruebas de creación de listas
 
 ### Caso: Crear una lista válida
-**Pasos**
+Pasos
 1. Navegar a `/crear`.
 2. Completar:
    - Título
@@ -14,7 +14,7 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
    - 5 elementos
 3. Pulsar **Guardar**.
 
-**Resultado esperado**
+Resultado esperado
 - Redirige a `/listas`.
 - La nueva lista aparece en pantalla.
 - `localStorage.getItem("top5lists")` contiene la lista recién creada.
@@ -22,11 +22,11 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 ### Caso: Intentar guardar con campos vacíos
 *(Si aún no hay validación, este test sirve para detectar la necesidad de implementarla)*
 
-**Pasos**
+Pasos
 1. Dejar campos vacíos.
-2. Pulsar **Guardar**.
+2. Pulsar Guardar.
 
-**Resultado esperado**
+Resultado esperado
 - La app debería impedir guardar o mostrar un mensaje de error.
 - *(Si no ocurre, se documenta como bug pendiente.)*
 
@@ -34,7 +34,7 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 ## 2. Pruebas de persistencia (localStorage)
 
 ### Caso: Persistencia después de recargar
-**Pasos**
+Pasos
 1. Crear una lista.
 2. Recargar la página (`F5`).
 
@@ -43,7 +43,7 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 - `localStorage` mantiene los datos.
 
 ### Caso: Persistencia después de cerrar y abrir el navegador
-**Pasos**
+Pasos
 1. Crear una lista.
 2. Cerrar el navegador.
 3. Abrirlo de nuevo y entrar a la app.
@@ -55,14 +55,14 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 ## 3. Pruebas de navegación
 
 ### Caso: Navegar entre páginas
-**Pasos**
+Pasos
 1. Ir a `/`.
 2. Ir a `/crear`.
 3. Crear una lista.
 4. Ir a `/listas`.
 5. Volver a `/`.
 
-**Resultado esperado**
+Resultado esperado
 - Las listas aparecen en todas las vistas que las muestran.
 - No se pierde información al cambiar de ruta.
 
@@ -70,11 +70,11 @@ Este documento describe las pruebas manuales y automáticas recomendadas para ga
 ## 4. Pruebas del contexto (Top5Context)
 
 ###  Caso: El contexto comparte estado entre páginas
-**Pasos**
+Pasos
 1. Crear una lista en `/crear`.
 2. Navegar a `/`.
 
-**Resultado esperado**
+Resultado esperado
 - La lista aparece sin necesidad de recargar.
 
 ### Caso: El contexto carga datos desde localStorage

@@ -10,3 +10,4 @@ router.put("/:id", validateList, controller.update);
 router.delete("/:id", controller.remove);
 
 module.exports = router;
+
