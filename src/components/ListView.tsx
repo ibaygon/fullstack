@@ -6,13 +6,13 @@ import { ListaCard } from "./ListaCard";
 export const ListView = () => {
   const { lists } = useTop5Context();
 
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const totalItems = useMemo(() => {
     return lists.reduce((acc, list) => acc + list.items.length, 0);
   }, [lists]);
 
-  const handleSelect = useCallback((id: string) => {
+  const handleSelect = useCallback((id: number) => {
     setSelectedId(id);
   }, []);
 

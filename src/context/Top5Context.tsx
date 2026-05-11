@@ -1,35 +1,71 @@
 import type { ReactNode } from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { Top5List } from "../types/Top5List";
+import { supabase } from "../lib/supabase";
+import { useAuth } from "./AuthContext";
 
 interface Top5ContextType {
   lists: Top5List[];
-  addList: (list: Top5List) => void;
-  removeList: (id: string) => void;
+  addList: (list: Top5List) => Promise<void>;
+  removeList: (id: number) => Promise<void>;
 }
 
 const Top5Context = createContext<Top5ContextType | null>(null);
 
 export const Top5Provider = ({ children }: { children: ReactNode }) => {
+  const { user } = useAuth();
   const [lists, setLists] = useState<Top5List[]>([]);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("top5lists");
-    if (saved) {
-      setLists(JSON.parse(saved));
+
+  const loadLists = async () => {
+    if (!user) {
+      setLists([]);
+      return;
     }
-  }, []);
 
-  useEffect(() => {
-    localStorage.setItem("top5lists", JSON.stringify(lists));
-  }, [lists]);
+    const { data, error } = await supabase
+      .from("top5_lists")
+      .select("*")
+      .eq("user_id", user.uid)
+      .order("id", { ascending: false });
 
-  const addList = (list: Top5List) => {
-    setLists((prev) => [...prev, list]);
+    if (!error && data) {
+      setLists(data);
+    }
   };
 
-  const removeList = (id: string) => {
-    setLists((prev) => prev.filter((list) => list.id !== id));
+  useEffect(() => {
+    loadLists();
+  }, [user]);
+
+  // Añadir lista
+  const addList = async (list: Top5List) => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from("top5_lists")
+      .insert({
+        ...list,
+        user_id: user.uid,
+      })
+      .select()
+      .single();
+
+    if (!error && data) {
+      setLists((prev) => [data, ...prev]);
+    }
+  };
+
+
+  const removeList = async (id: number) => {
+    const { error } = await supabase
+      .from("top5_lists")
+      .delete()
+      .eq("id", id);
+
+    if (!error) {
+      setLists((prev) => prev.filter((l) => l.id !== id));
+    }
   };
 
   return (
