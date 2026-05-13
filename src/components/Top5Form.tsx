@@ -37,11 +37,11 @@ export const Top5Form: React.FC<Top5FormProps> = ({ initialData }) => {
     }
 
     addList({
-      id: crypto.randomUUID(),
-      title,
-      category,
-      items,
+     title,
+     category,
+     items,
     });
+
 
     setSuccess("Lista creada correctamente");
     setTitle("");

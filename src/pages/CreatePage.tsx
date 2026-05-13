@@ -16,9 +16,8 @@ export const CreatePage = () => {
     setItems(updated);
   };
 
-  const handleSave = () => {
-    addList({
-      id: crypto.randomUUID(),
+  const handleSave = async () => {
+    await addList({
       title,
       category,
       items,
@@ -64,4 +63,3 @@ export const CreatePage = () => {
     </div>
   );
 };
-

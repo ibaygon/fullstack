@@ -1,30 +1,52 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import type { User } from "firebase/auth"; // ✔ Importación correcta del tipo
+import { supabase } from "../lib/supabase";
 
 interface AuthContextType {
-  user: User | null;
+  user: any;
   loading: boolean;
+  signInWithGoogle: () => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    // Escucha cambios de sesión
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      async (_event, session) => {
+        setUser(session?.user ?? null);
+        setLoading(false);
+      }
+    );
+
+    // Obtiene sesión inicial
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user ?? null);
       setLoading(false);
     });
 
-    return () => unsub();
+    return () => listener.subscription.unsubscribe();
   }, []);
 
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin,
+      },
+    });
+  };
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, loading, signInWithGoogle, signOut }}>
       {children}
     </AuthContext.Provider>
   );

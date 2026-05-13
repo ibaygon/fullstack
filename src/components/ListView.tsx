@@ -21,14 +21,15 @@ export const ListView = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {lists.map((list) => (
         <ListaCard
           key={list.id}
           list={list}
-          onClick={() => handleSelect(list.id)}
+          onClick={() => list.id !== undefined && handleSelect(list.id)}
         />
       ))}
+
       <p className="text-sm text-gray-500 col-span-full">
         Total de elementos en todas las listas: {totalItems}
       </p>
