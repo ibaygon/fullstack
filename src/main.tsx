@@ -1,13 +1,10 @@
-import { createRoot } from "react-dom/client";
-import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App";
-import { Top5Provider } from "./context/Top5Context";
-import { AuthProvider } from "./context/AuthContext";
+import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
-  <AuthProvider>
-    <Top5Provider>
-      <App />
-    </Top5Provider>
-  </AuthProvider>
+ReactDOM.createRoot(document.getElementById("app-container")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
