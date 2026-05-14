@@ -4,7 +4,6 @@ import { Top5Detail } from "../components/Top5Detail";
 import { useAuth } from "../context/AuthContext";
 import { useTop5Context } from "../context/Top5Context";
 import { supabase } from "../lib/supabase";
-import { getAuthSiteUrl } from "../lib/authSiteUrl";
 import { mapTop5ListRow } from "../lib/mapTop5ListRow";
 import type { Top5List } from "../types/Top5List";
 
@@ -62,9 +61,10 @@ export const ListDetailPage = () => {
         (list.user_id != null && list.user_id === user.id))
   );
 
-  const baseUrl = getAuthSiteUrl();
   const shareUrl =
-    baseUrl && list?.id != null ? `${baseUrl}/lista/${list.id}` : "";
+    typeof window !== "undefined" && list?.id != null
+      ? `${window.location.origin}/lista/${list.id}`
+      : "";
 
   const togglePublic = async () => {
     if (!list?.id || !isOwner) return;

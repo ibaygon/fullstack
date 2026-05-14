@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAuthSiteUrl } from "../lib/authSiteUrl";
 import { supabase } from "../lib/supabase";
 
 interface AuthContextType {
@@ -34,11 +33,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const signInWithGoogle = async () => {
-    const redirectTo = getAuthSiteUrl();
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: redirectTo || window.location.origin,
+        redirectTo: window.location.origin,
       },
     });
   };
