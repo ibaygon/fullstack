@@ -1,0 +1,5 @@
+# Reflexión final
+
+Lo que más costó fue **migrar de Firebase a Supabase en el para la autenticación**. Este cambio lo hice porque en supabase v3.0 no puedes usar firebase como sistema de autentificacion externo, decidi que era mejor remplazar el sistema de autentificacion de Firebase por el de Supa, para ello tuve que volver a crear el flujo de sesión (OAuth con Google, `onAuthStateChange`, `redirectTo`), alinear los **UUID de `auth.users`** con la columna **`user_id`** en `top5_lists` (mi tabla de Supabase) y asegurar que cada operación CRUD respetara RLS.
+
+En conclusión, conviene definir lo antes posible el modelo de permisos (dueño vs público vs anónimo) y tipar el cliente Supabase con más rigor para reducir problemas. El proyecto quedó más robusto al centralizar el mapeo de filas, mostrar errores de cambios al usuario y documentar el despliegue y las URLs en el README.

@@ -1,3 +1,5 @@
+idea.md
+
 # Top 5 de todo
 
 ## 1 descripcion de la aplicacion
@@ -25,12 +27,10 @@ El formato "Top 5" es simple, rapido y divertido, y se centra en lo esencial.
 - Compartir listas mediante un enlace.
 - Modo oscuro.
 - Subir imágenes para cada elemento del Top 5.
-- Ordenar elementos arrastrando (drag & drop).
 - Guardar listas en el backend Express en vez de LocalStorage.
-- Sistema de “likes” para listas populares.
+- Autenticación real (login/registro).
 
 ## 6 Mejoras futuras
-- Autenticación real (login/registro).
 - Base de datos real.
 - Perfil de usuario con sus listas públicas.
 - Comentarios en listas.
